@@ -1,0 +1,47 @@
+apacheopn:
+  build: apache
+  restart: always
+  ports:
+    - "80:80"
+  volumes:
+    - ./symfony:/var/www/symfony
+    - ./cardregistration-js-kit:/app
+    - ./apache/php.ini:/etc/php5/apache2/conf.d/30-custom.ini
+    - ./apache/php.ini:/etc/php5/cli/conf.d/30-custom.ini
+    - ./vhosts:/etc/apache2/sites-enabled
+  environment:
+    - ALLOW_OVERRIDE=true
+  links:
+    - db
+    - maildev
+
+db:
+  image: mariadb
+  restart: always
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=opnK2015
+    - MYSQL_DATABASE=opnkitchen
+    - MYSQL_USER=opnKUser
+    - MYSQL_PASSWORD=opnKPass
+  volumes:
+    - ./db:/var/lib/mariadb
+
+phpmyadmin:
+   image: corbinu/docker-phpmyadmin
+   restart: always
+   ports :
+    - "8080:80"
+   environment:
+    - MYSQL_USERNAME=root
+    - MYSQL_PASSWORD=opnK2015
+   links:
+    - db:mysql
+
+
+maildev:
+  image: djfarrelly/maildev
+  restart: always
+  ports:
+      - "1080:80"
