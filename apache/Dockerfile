@@ -27,6 +27,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       supervisor \
     && rm -rf /var/lib/apt/lists/*
 
+# install ruby
+RUN apt-get update && apt-get install -y -qq ruby-dev
+RUN apt-get update && apt-get install make
+
+# install compass
+RUN gem install --no-rdoc --no-ri compass
+
+
 # Add image configuration and scripts
 ADD apache.sh /apache.sh
 RUN chmod 755 /*.sh
