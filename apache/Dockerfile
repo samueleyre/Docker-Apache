@@ -22,15 +22,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       php5-sqlite \
       php5-pgsql \
       php5-mysql \
+      php5-xmlrpc \
       php5-memcache \
       php-apc \
       supervisor \
+      screen \
     && rm -rf /var/lib/apt/lists/*
 
-# install ruby
-RUN apt-get update && apt-get install -y -qq ruby-dev
-RUN apt-get update && apt-get install make
-
+# install front
+RUN apt-get update && apt-get install -y -qq nodejs npm
+RUN npm install -g bower
 # install compass
 RUN gem install --no-rdoc --no-ri compass
 

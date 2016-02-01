@@ -4,24 +4,24 @@ apacheopn:
   ports:
     - "80:80"
   volumes:
-    - ./symfony:/var/www/symfony/
+    - ./ambrieu:/var/www/ambrieu/
     - ./apache/php.ini:/etc/php5/apache2/conf.d/30-custom.ini
     - ./apache/php.ini:/etc/php5/cli/conf.d/30-custom.ini
     - ./vhosts:/etc/apache2/sites-enabled
-    - ./tmp/opnkitchen:/tmp/opnkitchen
   links:
     - db
     - maildev
+    - rabbitmq
 db:
   image: mariadb
   restart: always
   ports:
     - "3306:3306"
   environment:
-    - MYSQL_ROOT_PASSWORD=opnK2015
-    - MYSQL_DATABASE=opnkitchen
-    - MYSQL_USER=opnKUser
-    - MYSQL_PASSWORD=opnKPass
+    - MYSQL_ROOT_PASSWORD=b1otope
+    - MYSQL_DATABASE=blog_generator
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=b1otope
   volumes:
     - ./db:/var/lib/mariadb
 
@@ -32,13 +32,11 @@ phpmyadmin:
     - "8080:80"
    environment:
     - MYSQL_USERNAME=root
-    - MYSQL_PASSWORD=opnK2015
+    - MYSQL_PASSWORD=b1otope
    links:
     - db:mysql
 
-
-maildev:
-  image: djfarrelly/maildev
-  restart: always
-  ports:
-      - "1080:80"
+rabbitmq:
+   image: rabbitmq:3-management
+   ports:
+    - 15672:15672
