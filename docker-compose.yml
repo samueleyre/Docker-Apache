@@ -5,6 +5,7 @@ apacheopn:
     - "80:80"
   volumes:
     - ./ambrieu:/var/www/ambrieu/
+    - ./install:/var/install/
     - ./apache/php.ini:/etc/php5/apache2/conf.d/30-custom.ini
     - ./apache/php.ini:/etc/php5/cli/conf.d/30-custom.ini
     - ./vhosts:/etc/apache2/sites-enabled
