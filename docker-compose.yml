@@ -10,7 +10,6 @@ apacheopn:
     - ./vhosts:/etc/apache2/sites-enabled
   links:
     - db
-    - maildev
     - rabbitmq
 db:
   image: mariadb

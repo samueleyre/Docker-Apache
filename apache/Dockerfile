@@ -32,8 +32,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # install front
 RUN apt-get update && apt-get install -y -qq nodejs npm
 RUN npm install -g bower
-# install compass
-RUN gem install --no-rdoc --no-ri compass
 
 
 # Add image configuration and scripts
