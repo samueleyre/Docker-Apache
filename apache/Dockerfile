@@ -14,23 +14,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
       git \
       curl \
-      sqlite3 \
-      php5 \
-      php5-curl \
-      php5-fpm \
-      php5-intl \
-      php5-sqlite \
-      php5-pgsql \
-      php5-mysql \
-      php5-xmlrpc \
-      php5-memcache \
-      php-apc \
-      supervisor \
       screen \
+      vim \
     && rm -rf /var/lib/apt/lists/*
 
 # install front
 RUN apt-get update && apt-get install -y -qq nodejs npm
+
 RUN npm install -g bower
 
 
@@ -38,7 +28,7 @@ RUN npm install -g bower
 ADD apache.sh /apache.sh
 RUN chmod 755 /*.sh
 
-WORKDIR /var/www/symfony
+WORKDIR /var/www/html
 
 #USER www-data
 
