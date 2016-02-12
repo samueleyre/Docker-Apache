@@ -27,6 +27,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       supervisor \
     && rm -rf /var/lib/apt/lists/*
 
+## Install Nodejs    
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
+RUN apt-get install --yes nodejs
+
+
+
 # install ruby
 RUN apt-get update && apt-get install -y -qq ruby-dev
 RUN apt-get update && apt-get install make
