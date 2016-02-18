@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y -qq nodejs npm
 
 RUN npm install -g bower
 
+RUN npm install -g gulp
 
 # Add image configuration and scripts
 ADD apache.sh /apache.sh
