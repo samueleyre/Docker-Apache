@@ -10,6 +10,7 @@ FROM tutum/apache-php
 
 RUN usermod -u 1000 www-data
 
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
       git \
@@ -27,11 +28,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       supervisor \
     && rm -rf /var/lib/apt/lists/*
 
-## Install Nodejs    
+
+RUN a2enmod rewrite
+
+## Install Nodejs
 RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
 RUN apt-get install --yes nodejs
-
-
 
 # install ruby
 RUN apt-get update && apt-get install -y -qq ruby-dev

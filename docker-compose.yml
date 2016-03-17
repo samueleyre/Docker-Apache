@@ -23,7 +23,7 @@ db:
     - MYSQL_USER=opnKUser
     - MYSQL_PASSWORD=opnKPass
   volumes:
-    - ./db:/var/lib/mariadb
+    - ./db:/etc/mysql/conf.d
 
 phpmyadmin:
    image: corbinu/docker-phpmyadmin
