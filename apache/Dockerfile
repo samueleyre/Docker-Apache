@@ -14,16 +14,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
       git \
       curl \
-      screen \
       vim \
     && rm -rf /var/lib/apt/lists/*
 
 # install front
-RUN apt-get update && apt-get install -y -qq nodejs npm
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN apt-get install -y nodejs
+
+RUN curl -L https://www.npmjs.com/install.sh | sh
 
 RUN npm install -g bower
 
 RUN npm install -g gulp
+
+RUN npm install -g webpack
 
 # Add image configuration and scripts
 ADD apache.sh /apache.sh
