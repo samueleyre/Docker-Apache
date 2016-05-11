@@ -10,7 +10,7 @@ function colored(){
     echo ${TEXTCOLOR}' '${1}' '${RESETCOLOR}
 }
 
-echo -n '  '${TEXTCOLOR}' environement endpoint ? '${RESETCOLOR}' (p) production, (s) staging, (d) developpement, (a) alex | default (s)' 
+echo -n '  '${TEXTCOLOR}' environement endpoint ? '${RESETCOLOR}' (p) production, (s) staging, (d) development, (a) alex | default (s)' 
 read choice
 
 case $choice in
@@ -20,8 +20,8 @@ case $choice in
         s)
             env='staging'
             ;;
-        p)
-            env='production'
+        d)
+            env='development'
             ;;
         a)
             env='alex'
